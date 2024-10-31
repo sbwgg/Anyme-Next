@@ -45,13 +45,16 @@ const ReadPage = ({ params }) => {
     }
   };
 
-  if (!chapterData) return <h1>Loading...</h1>;
+  if (!chapterData)
+    return (
+      <h1 className="flex items-center justify-center min-h-screen">
+        Loading...
+      </h1>
+    );
 
   return (
-    <div className="min-h-screen flex flex-col items-center gap-5 max-md:text-center">
-      <h1 className="text-3xl font-boldr">
-        {chapterData.title}
-      </h1>
+    <div className="min-h-[100vh] flex flex-col items-center gap-5 max-md:text-center">
+      <h1 className="text-3xl font-boldr">{chapterData.title}</h1>
       <h1>{chapterData.currentChapter}</h1>
       <Breadcrumb
         prevPage={mangaID}
@@ -101,8 +104,8 @@ const ReadPage = ({ params }) => {
                 />
               ))
             : Array.from({ length: 30 }).map((_, index) => (
-                <div className="flex w-[700px] items-center justify-center h-[800px] bg-white" >
-                  <h1 className="text-black" >{index + 1}</h1>
+                <div className="flex w-[700px] items-center justify-center h-[800px] bg-white">
+                  <h1 className="text-black">{index + 1}</h1>
                 </div>
               ))}
           <div className="flex mt-5 justify-between items-center flex-row flex-shrink-0 max-md:px-5">

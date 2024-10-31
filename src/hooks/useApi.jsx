@@ -252,9 +252,7 @@ export const FetchAniwatchHomePage = async () => {
 export const FetchAnimeByCategories = async (category, page) => {
   // categories -> "most-favorite", "most-popular", "subbed-anime", "dubbed-anime", "recently-updated", "recently-added", "top-upcoming", "top-airing", "movie", "special", "ova", "ona", "tv", "completed"
 
-  const resp = await fetch(
-    `${PROXY}${ANIWATCH_URL}/${category}?page=${page}`
-  );
+  const resp = await fetch(`${PROXY}${ANIWATCH_URL}/${category}?page=${page}`);
   const data = await resp.json();
   return data;
 };
@@ -289,7 +287,7 @@ export const AdvancedSearch = async (
   score = "good"
 ) => {
   const genresParam = genres ? genres : "";
-  const queryUrl = `${PROXY}${ANIWATCH_URL}search?q=${query}&genres=${genresParam}&type=${type}&sort=${sort}&season=${season}&language=${lang}&status=${status}&rated=${rating}&start_date=${y}-${m}-${d}&end_date=${ey}-${em}-${ed}&score=${score}`;
+  const queryUrl = `${ANIWATCH_URL}search?q=${query}&genres=${genresParam}&type=${type}&sort=${sort}&season=${season}&language=${lang}&status=${status}&rated=${rating}&start_date=${y}-${m}-${d}&end_date=${ey}-${em}-${ed}&score=${score}`;
   const resp = await fetch(queryUrl);
   const data = await resp.json();
   return data.animes;
@@ -311,11 +309,7 @@ export const FetchEstimatedSchedule = async (year, month, day) => {
 
 export const FetchMangaList = async (page = 1) => {
   const response = await fetch(
-    PROXY +
-      MANGA_URL +
-      "mangalist" +
-      "?page=" +
-      page
+    PROXY + MANGA_URL + "mangalist" + "?page=" + page
   );
   const data = await response.json();
   return data;
