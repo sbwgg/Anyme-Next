@@ -1,7 +1,10 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClosedCaptioning, faMicrophone } from '@fortawesome/free-solid-svg-icons';
-import Link from 'next/link';
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faClosedCaptioning,
+  faMicrophone,
+} from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 
 const AnimeItem = ({ data, handleCross }) => (
   <Link
@@ -12,7 +15,7 @@ const AnimeItem = ({ data, handleCross }) => (
   >
     <img
       className="w-[70px] h-[80px] rounded-lg"
-      src={`https://anymey-proxy.vercel.app/cors?url=${data.poster}` || 'https://100x100'}
+      src={data.poster || "https://100x100"}
       alt=""
     />
     <div className="flex flex-col w-full gap-2">
@@ -23,7 +26,7 @@ const AnimeItem = ({ data, handleCross }) => (
           {data.episodes.sub}
         </p>
         <p className="flex flex-row items-center gap-1 px-1 bg-blue-200 text-black">
-          <FontAwesomeIcon icon={faMicrophone} /> {data.episodes.dub || '0'}
+          <FontAwesomeIcon icon={faMicrophone} /> {data.episodes.dub || "0"}
         </p>
         <p className="px-2 rounded-r-sm bg-primary/30">{data.type}</p>
       </div>
@@ -40,7 +43,7 @@ const MangaItem = ({ data, handleCross }) => (
   >
     <img
       className="w-[70px] h-[80px] rounded-lg"
-      src={`https://anymey-proxy.vercel.app/cors?url=${data.image}` || 'https://100x100'}
+      src={data.image || "https://100x100"}
       alt=""
     />
     <div className="flex flex-col w-full gap-2">
@@ -50,13 +53,17 @@ const MangaItem = ({ data, handleCross }) => (
 );
 
 const SearchItem = ({ searchData, searchMode, handleCross }) => {
-  if (searchMode === 'Anime') {
-    return searchData?.map((data) => <AnimeItem key={data.id} data={data} handleCross={handleCross} />);
+  if (searchMode === "Anime") {
+    return searchData?.map((data) => (
+      <AnimeItem key={data.id} data={data} handleCross={handleCross} />
+    ));
   }
 
-  if (searchMode === 'Manga') {
+  if (searchMode === "Manga") {
     if (searchData?.mangaList?.length > 0) {
-      return searchData.mangaList.map((data) => <MangaItem key={data.id} data={data} handleCross={handleCross} />);
+      return searchData.mangaList.map((data) => (
+        <MangaItem key={data.id} data={data} handleCross={handleCross} />
+      ));
     } else {
       return <h1>Not Found</h1>;
     }
